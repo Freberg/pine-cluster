@@ -1,0 +1,22 @@
+- name: "Install prerequisites on all cluster nodes"
+  hosts: pine_cluster
+  tags: common
+  become: yes
+  tasks:
+    - name: "Install prerequisites packages"
+      apt:
+        name:
+          - open-iscsi
+          - nfs-common
+          - cryptsetup
+          - dmsetup
+
+- name: "Prepare storage nodes"
+  hosts: pine_cluster_storage
+  tags: storage
+  become: yes
+  tasks:
+    - name: "Install storage node prerequisites packages"
+      apt:
+        name:
+          - xfsprogs

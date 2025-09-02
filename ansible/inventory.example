@@ -1,0 +1,17 @@
+[pine_cluster:children]
+pine_cluster_server
+pine_cluster_agent
+
+[pine_cluster_server]
+pine1 ansible_host=example.node1
+
+[pine_cluster_agent]
+pine2 ansible_host=example.node2
+pine3 ansible_host=example.node3
+pine4 ansible_host=example.node4
+pine5 ansible_host=example.node5
+pine6 ansible_host=example.node6
+pine7 ansible_host=example.node7
+
+[pine_cluster_storage]
+pine2 ansible_host=example.node2
