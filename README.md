@@ -45,3 +45,8 @@ Generate token for the kubernetes-dashboard
 ```
 kubectl create token admin-user -n kubernetes-dashboard
 ```
+
+k3s support single node deployments and does not taint the master node, to prevent pods being scheduled on master
+```
+kubectl describe node <MASTER_NODE>
+```
