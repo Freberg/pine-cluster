@@ -13,7 +13,14 @@ spec:
         values: |
           preUpgradeChecker:
             jobEnabled: false
+          global:
+            tolerations:
+              - key: "node-role.kubernetes.io/master"
+                operator: "Equal"
+                value: ""
+                effect: "NoSchedule"
           defaultSettings:
+            taintToleration: "node-role.kubernetes.io/master:NoSchedule"
             createDefaultDiskLabeledNodes: true
             defaultDataPath: "/mnt/ssd/longhorn"
 
@@ -25,4 +32,6 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
+    - ApplyOutOfSyncOnly=true
     - CreateNamespace=true
+    - ServerSideApply=true
