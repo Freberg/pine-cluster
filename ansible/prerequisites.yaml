@@ -20,3 +20,22 @@
       apt:
         name:
           - xfsprogs
+    - name: "Create bind mount entry for Longhorn"
+      lineinfile:
+        path: /etc/fstab
+        line: "/mnt/ssd/longhorn /mnt/ssd/longhorn none bind 0 0"
+        state: present
+        insertafter: EOF
+
+- name: "Prepare master nodes"
+  hosts: pine_cluster_server
+  become: yes
+  tasks:
+    - name: "Set GOMEMLIMIT for k3s"
+      lineinfile:
+        path: /etc/default/k3s
+        line: "GOMEMLIMIT=1200MiB"
+        create: yes
+        owner: root
+        group: root
+        mode: '0644'
