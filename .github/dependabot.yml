@@ -1,11 +1,19 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: "gitsubmodule"
     directory: "/argo-applications" 
     schedule:
       interval: "weekly"
+    vendor: true
 
-  - package-ecosystem: "github-actions"
-    directory: "/infrastructure" 
+  - package-ecosystem: "gitsubmodule" 
+    directory: "/infrastructure/argocd"
     schedule:
       interval: "weekly"
+    vendor: true 
+
+  - package-ecosystem: "gitsubmodule" 
+    directory: "/infrastructure/rabbitmq"
+    schedule:
+      interval: "weekly"
+    vendor: true 
