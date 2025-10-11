@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "helm"
+    directory: "/argo-applications" 
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "gitsubmodule"
+    directory: "/infrastructure" 
+    schedule:
+      interval: "weekly"
