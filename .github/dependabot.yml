@@ -4,16 +4,13 @@ updates:
     directory: "/argo-applications" 
     schedule:
       interval: "weekly"
-    vendor: true
 
   - package-ecosystem: "gitsubmodule" 
     directory: "/infrastructure/argocd"
     schedule:
       interval: "weekly"
-    vendor: true 
 
   - package-ecosystem: "gitsubmodule" 
     directory: "/infrastructure/rabbitmq"
     schedule:
       interval: "weekly"
-    vendor: true 
