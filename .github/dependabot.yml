@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "weekly"
 
-  - package-ecosystem: "gitsubmodule"
+  - package-ecosystem: "docker"
     directory: "/infrastructure" 
     schedule:
       interval: "weekly"
