@@ -1,11 +1,11 @@
 version: 2
 updates:
-  - package-ecosystem: "helm"
+  - package-ecosystem: "github-actions"
     directory: "/argo-applications" 
     schedule:
       interval: "weekly"
 
-  - package-ecosystem: "docker"
+  - package-ecosystem: "github-actions"
     directory: "/infrastructure" 
     schedule:
       interval: "weekly"
