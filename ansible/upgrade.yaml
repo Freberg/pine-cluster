@@ -1,0 +1,26 @@
+- name: Armbian Node Upgrade Playbook
+  hosts: pine_cluster
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "Update APT package cache"
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: "Upgrade all packages"
+      apt:
+        upgrade: dist
+        autoremove: yes
+        dpkg_options: 'force-confold'
+
+    - name: "Check if a reboot is required"
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_required_file
+      changed_when: false
+
+    - name: "Reboot the node if required"
+      reboot:
+        reboot_timeout: 600
+      when: reboot_required_file.stat.exists
