@@ -12,10 +12,5 @@ spec:
       services:
         - name: argocd-server
           port: 443
-    - match: HostSNI(`argocd.pine-cluster.home`) && Headers(`Content-Type`, `application/grpc`)
-      priority: 11
-      services:
-        - name: argocd-server
-          port: 443
   tls:
     passthrough: true
