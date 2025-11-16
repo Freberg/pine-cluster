@@ -12,6 +12,8 @@ patches:
   - target: 
       kind: Plan
     patch: |-
+      apiVersion: upgrade.cattle.io/v1
+      kind: Plan
       spec:
         upgrade:
           version: v1.33.4+k3s1
