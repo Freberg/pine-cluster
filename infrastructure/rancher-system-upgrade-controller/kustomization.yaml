@@ -11,9 +11,6 @@ resources:
 patches:
   - target: 
       kind: Plan
-    #patch: |-
-    #  spec:
-    #    version: v1.33.4+k3s1
     patch: |-
       - op: add
         path: /spec/version
