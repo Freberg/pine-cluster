@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rancher-system-upgrade-controller
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/freberg/pine-cluster
+    targetRevision: HEAD
+    path: infrastructure/rancher-system-upgrade-controller
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: system-upgrade
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - ApplyOutOfSyncOnly=true
+    - CreateNamespace=true
+    - ServerSideApply=true
