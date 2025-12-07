@@ -5,14 +5,21 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://charts.jetstack.io'
-    chart: cert-manager
-    targetRevision: v1.19.1
-    helm:
-      values: |
-        crds:
-          enabled: true
+  sources:
+    - repoURL: 'https://charts.jetstack.io'
+      chart: cert-manager
+      targetRevision: v1.19.1
+      helm:
+        values: |
+          crds:
+            enabled: true
+    - repoURL: 'https://github.com/ebrianne/cert-manager-webhook-duckdns.git'
+      path: deploy/cert-manager-webhook-duckdns
+      targetRevision: v1.2.3
+      helm:
+        values: |
+          clusterIssuer:
+            enabled: false
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cert-manager
