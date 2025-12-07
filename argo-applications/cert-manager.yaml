@@ -13,13 +13,26 @@ spec:
         values: |
           crds:
             enabled: true
-    - repoURL: 'https://github.com/ebrianne/cert-manager-webhook-duckdns.git'
-      path: deploy/cert-manager-webhook-duckdns
-      targetRevision: v1.2.3
+    # - repoURL: 'https://github.com/ebrianne/cert-manager-webhook-duckdns.git'
+      # path: deploy/cert-manager-webhook-duckdns
+      # targetRevision: v1.2.3
+      # helm:
+        # values: |
+          # clusterIssuer:
+            # enabled: false
+    - repoURL: 'https://github.com/csp33/cert-manager-duckdns-webhook.git'
+      path: charts/cert-manager-duckdns-webhook
+      targetRevision: master
       helm:
         values: |
           clusterIssuer:
-            enabled: false
+            production:
+              create: false
+            staging:
+              create: false
+          secret:
+            existingSecret: true
+            existingSecretName: duckdns-token
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cert-manager
