@@ -31,8 +31,7 @@ spec:
               create: false
             staging:
               create: false
-          secret:
-            existingSecret: true
+          token:
             existingSecretName: duckdns-token
   destination:
     server: 'https://kubernetes.default.svc'
