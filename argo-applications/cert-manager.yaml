@@ -25,6 +25,7 @@ spec:
       targetRevision: master
       helm:
         values: |
+          groupName: acme.duckdns.org
           clusterIssuer:
             production:
               create: false
