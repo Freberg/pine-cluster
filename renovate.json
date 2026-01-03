@@ -6,15 +6,21 @@
     ":combinePatchMinorReleases"
   ],
   "argocd": {
-    "fileMatch": ["^argo-applications/.*\\.yaml$"]
+    "managerFilePatterns": [
+      "/^argo-applications/.*\\.yaml$/"
+    ]
   },
   "kubernetes": {
-    "fileMatch": ["\\.yaml$"]
+    "managerFilePatterns": [
+      "/\\.yaml$/"
+    ]
   },
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["infrastructure/.*/kustomization\\.yaml$"],
+      "managerFilePatterns": [
+        "/infrastructure/.*/kustomization\\.yaml$/"
+      ],
       "matchStrings": [
         "https://raw\\.githubusercontent\\.com/(?<depName>[^/]+/[^/]+)/(?<currentValue>[^/]+)/",
         "https://github\\.com/(?<depName>[^/]+/[^/]+)/releases/download/(?<currentValue>[^/]+)/"
