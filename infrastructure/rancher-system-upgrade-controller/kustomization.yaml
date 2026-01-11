@@ -14,4 +14,4 @@ patches:
     patch: |-
       - op: add
         path: /spec/version
-        value: v1.34.1+k3s1
+        value: v1.35.0+k3s1
