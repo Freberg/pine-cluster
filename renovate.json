@@ -12,7 +12,7 @@
   },
   "kubernetes": {
     "managerFilePatterns": [
-      "/\\.yaml$/"
+      "/^infrastructure/.*/.*\\.yaml$/"
     ]
   },
   "customManagers": [
