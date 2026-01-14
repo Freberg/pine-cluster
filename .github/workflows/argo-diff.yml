@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - 'argo-applications/**'
+      - 'infrastructure/**'
 
 jobs:
   build:
