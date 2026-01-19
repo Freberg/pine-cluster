@@ -9,6 +9,8 @@ spec:
     spec:
       template:
         spec:
+          securityContext:
+            fsGroup: 1000
           containers:
             - image: renovate
               name: renovate-bot
@@ -31,12 +33,13 @@ spec:
               volumeMounts:
                 - name: config-volume
                   mountPath: /opt/renovate/
-                - name: work-volume
+                - name: cache-volume
                   mountPath: /tmp/renovate/
           restartPolicy: Never
           volumes:
             - name: config-volume
               configMap:
                 name: renovate-config
-            - name: work-volume
-              emptyDir: {}
+            - name: cache-volume
+              persistentVolumeClaim:
+                claimName: renovate-cache-pvc

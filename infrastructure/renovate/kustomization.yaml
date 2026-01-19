@@ -10,3 +10,4 @@ resources:
 - sealed-secret.yaml
 - config-map.yaml
 - cron-job.yaml
+- pvc.yaml
