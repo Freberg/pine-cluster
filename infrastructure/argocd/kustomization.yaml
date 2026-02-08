@@ -3,5 +3,11 @@ kind: Kustomization
 
 namespace: argocd
 resources:
-- https://raw.githubusercontent.com/argoproj/argo-cd/v3.3.0/manifests/install.yaml
-- config-map.yaml
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v3.3.0/manifests/install.yaml
+
+configMapGenerator:
+- name: argocd-cmd-params-cm
+  behavior: merge
+  literals:
+    - server.insecure=true
+
