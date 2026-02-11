@@ -1,0 +1,39 @@
+- name: "Configure k3s database backups"
+  hosts: pine_cluster_server
+  become: yes
+  vars:
+    backup_dir: "/mnt/ssd/k3s_backups"
+    k3s_db_path: "/mnt/ssd/k3s/server/db"
+    k3s_db_name: "state.db"
+    keep_days: 7
+
+  tasks:
+    - name: "Install prerequisites packages"
+      apt:
+        name:
+          - sqlite3
+    - name: "Create backup directory"
+      file:
+        path: "{{ backup_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0700'
+    - name: "Create the backup script"
+      copy:
+        dest: /usr/local/bin/k3s-db-backup.sh
+        mode: '0755'
+        content: |
+          #!/bin/bash
+          DATE=$(date +%Y-%m-%d_%H%M)
+          # Use sqlite3 .backup on state.db
+          sqlite3 "file:{{ k3s_db_path }}/{{ k3s_db_name }}?mode=ro" ".backup {{ backup_dir }}/k3s-db-$DATE.sqlite"
+          # Compress and clean up
+          gzip {{ backup_dir }}/k3s-db-$DATE.sqlite
+          find {{ backup_dir }} -type f -name "*.gz" -mtime +{{ keep_days }} -delete
+    - name: "Set up cron job for daily backups"
+      cron:
+        name: "Daily k3s database backup"
+        minute: "0"
+        hour: "3"
+        job: "/usr/local/bin/k3s-db-backup.sh > /dev/null 2>&1"
