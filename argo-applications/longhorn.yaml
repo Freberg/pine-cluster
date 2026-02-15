@@ -12,7 +12,6 @@ spec:
       helm:
         values: |
           # 1. memory leak hotfix - https://github.com/longhorn/longhorn/issues/12573
-          upgradeVersionCheck: false
           image:
             longhorn:
               manager:
@@ -22,6 +21,7 @@ spec:
 
           preUpgradeChecker:
             jobEnabled: false
+            upgradeVersionCheck: false # delete when removing hotfix
           global:
             tolerations:
               - key: "node-role.kubernetes.io/master"
