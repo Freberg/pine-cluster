@@ -19,3 +19,7 @@ spec:
     - ApplyOutOfSyncOnly=true
     - CreateNamespace=true
     - ServerSideApply=true
+  ignoreDifferences:
+  - kind: Service
+    jsonPointers:
+    - /spec/selector/rollouts-pod-template-hash
