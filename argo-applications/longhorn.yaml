@@ -11,14 +11,6 @@ spec:
       targetRevision: 1.11.1
       helm:
         values: |
-          # 1. memory leak hotfix - https://github.com/longhorn/longhorn/issues/12573
-          image:
-            longhorn:
-              manager:
-                tag: v1.11.0-hotfix-1
-              instanceManager:
-                tag: v1.11.0-hotfix-1
-
           preUpgradeChecker:
             jobEnabled: false
             upgradeVersionCheck: false # delete when removing hotfix
