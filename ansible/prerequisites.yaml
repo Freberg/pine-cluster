@@ -39,3 +39,25 @@
         owner: root
         group: root
         mode: '0644'
+
+- name: "Configure log rotation"
+  hosts: pine_cluster
+  tags: common
+  become: yes
+  tasks:
+    - name: "Force Armbian logrotate"
+      cron:
+        name: "Force Armbian logrotate"
+        minute: "0"
+        hour: "3"
+        weekday: "7"
+        job: "/usr/sbin/logrotate -f /etc/logrotate.conf"
+
+    - name: "Vacuum systemd logs"
+      cron:
+        name: "Vacuum systemd logs"
+        minute: "5"
+        hour: "3"
+        weekday: "7"
+        job: "/usr/bin/journalctl --vacuum-size=10M"
+
