@@ -4,7 +4,7 @@ kind: Kustomization
 images:
   - name: renovate
     newName: renovate/renovate
-    newTag: 44.111.3
+    newTag: 44.115.9
 
 resources:
 - sealed-secret.yaml
