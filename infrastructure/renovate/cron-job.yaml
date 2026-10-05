@@ -3,10 +3,11 @@ kind: CronJob
 metadata:
   name: renovate-bot
 spec:
-  schedule: '@daily'
+  schedule: "0 4 * * *"
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
+      activeDeadlineSeconds: 3600
       template:
         spec:
           securityContext:
@@ -14,6 +15,13 @@ spec:
           containers:
             - image: renovate
               name: renovate-bot
+              resources:
+                requests:
+                  cpu: "100m"
+                  memory: "256Mi"
+                limits:
+                  cpu: "500m"
+                  memory: "512Mi"
               env:
                 - name: RENOVATE_PLATFORM
                   value: 'github'
