@@ -5,6 +5,7 @@ metadata:
   name: server-plan
   namespace: system-upgrade
 spec:
+  jobActiveDeadlineSeconds: 3600
   concurrency: 1
   cordon: false
   nodeSelector:
@@ -29,6 +30,7 @@ metadata:
   name: agent-plan
   namespace: system-upgrade
 spec:
+  jobActiveDeadlineSeconds: 3600
   concurrency: 1
   cordon: true
   nodeSelector:
