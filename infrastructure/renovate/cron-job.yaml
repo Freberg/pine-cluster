@@ -37,6 +37,8 @@ spec:
                   value: '/tmp/renovate/'
                 - name: RENOVATE_CONFIG_FILE
                   value: '/opt/renovate/config.json'
+                - name: RENOVATE_PACKAGE_RULES
+                  value: '[{"matchUpdateTypes": ["major", "minor", "patch"], "minimumReleaseAge": "7 days"}]'
                 - name: LOG_LEVEL
                   value: debug
               volumeMounts:
