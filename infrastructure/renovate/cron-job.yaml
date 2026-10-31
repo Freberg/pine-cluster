@@ -37,6 +37,8 @@ spec:
                   value: '/tmp/renovate/'
                 - name: RENOVATE_CONFIG_FILE
                   value: '/opt/renovate/config.json'
+                - name: RENOVATE_MINIMUM_RELEASE_AGE_BEHAVIOUR
+                  value: 'timestamp-optional'
                 - name: RENOVATE_PACKAGE_RULES
                   value: '[{"matchUpdateTypes": ["major", "minor", "patch"], "matchPackageNames": ["!/^freberg\\//"], "minimumReleaseAge": "7 days"}]'
                 - name: LOG_LEVEL
