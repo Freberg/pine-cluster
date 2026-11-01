@@ -5,5 +5,19 @@ metadata:
 data:
   config.json: |-
     {
-      "repositories": ["freberg/pine-cluster","freberg/discorddeputy"]
+      "repositories": [
+        "freberg/pine-cluster",
+        "freberg/discorddeputy"
+      ],
+      "packageRules": [
+        {
+          "matchPackagePrefixes": ["freberg/"],
+          "minimumReleaseAge": null
+        },
+        {
+          "matchUpdateTypes": ["major", "minor", "patch"],
+          "minimumReleaseAge": "7 days",
+          "minimumReleaseAgeBehaviour": "timestamp-optional"
+        }
+      ]
     }
